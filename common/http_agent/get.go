@@ -19,23 +19,13 @@ package http_agent
 import (
 	"net/http"
 	"net/url"
-	"strings"
 	"time"
 )
 
 func get(client *http.Client, path string, header http.Header, timeoutMs uint64, params map[string]string) (response *http.Response, err error) {
-	if !strings.Contains(path, "?") {
-		path = path + "?"
-	}
-
-	for key, value := range params {
-		if !strings.HasSuffix(path, "&") {
-			path = path + "&"
-		}
-		path = path + key + "=" + url.QueryEscape(value) + "&"
-	}
-	if strings.HasSuffix(path, "&") {
-		path = path[:len(path)-1]
+	path, err = addQueryParams(path, params)
+	if err != nil {
+		return nil, err
 	}
 
 	client.Timeout = time.Millisecond * time.Duration(timeoutMs)
@@ -53,4 +43,17 @@ func get(client *http.Client, path string, header http.Header, timeoutMs uint64,
 		response = resp
 	}
 	return
+}
+
+func addQueryParams(path string, params map[string]string) (string, error) {
+	parsed, err := url.Parse(path)
+	if err != nil {
+		return "", err
+	}
+	query := parsed.Query()
+	for key, value := range params {
+		query.Add(key, value)
+	}
+	parsed.RawQuery = query.Encode()
+	return parsed.String(), nil
 }

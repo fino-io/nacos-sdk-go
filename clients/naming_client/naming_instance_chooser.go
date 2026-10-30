@@ -25,38 +25,34 @@ import (
 
 type Chooser struct {
 	data   []model.Instance
-	totals []int
-	max    int
+	totals []float64
+	max    float64
 }
 
-type instance []model.Instance
-
-func (a instance) Len() int {
-	return len(a)
-}
-
-func (a instance) Swap(i, j int) {
-	a[i], a[j] = a[j], a[i]
-}
-
-func (a instance) Less(i, j int) bool {
-	return a[i].Weight < a[j].Weight
-}
-
-// NewChooser initializes a new Chooser for picking from the provided Choices.
+// newChooser receives positive finite weights from selectOneHealthyInstances.
 func newChooser(instances []model.Instance) Chooser {
-	sort.Sort(instance(instances))
-	totals := make([]int, len(instances))
-	runningTotal := 0
-	for i, c := range instances {
-		runningTotal += int(c.Weight)
-		totals[i] = runningTotal
+	maxWeight := 0.0
+	for _, c := range instances {
+		if c.Weight > maxWeight {
+			maxWeight = c.Weight
+		}
 	}
-	return Chooser{data: instances, totals: totals, max: runningTotal}
+	totals := make([]float64, len(instances))
+	total := 0.0
+	for i, c := range instances {
+		// Scaling preserves ratios without overflowing when weights are very large.
+		total += c.Weight / maxWeight
+		totals[i] = total
+	}
+	return Chooser{data: instances, totals: totals, max: total}
 }
 
 func (chs Chooser) pick() model.Instance {
-	r := rand.Intn(chs.max) + 1
-	i := sort.SearchInts(chs.totals, r)
+	r := rand.Float64() * chs.max
+	i := sort.Search(len(chs.totals), func(i int) bool { return chs.totals[i] > r })
+	// Floating-point multiplication can round up to the upper endpoint.
+	if i == len(chs.data) {
+		i--
+	}
 	return chs.data[i]
 }

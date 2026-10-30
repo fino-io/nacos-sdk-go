@@ -22,7 +22,6 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"syscall"
 
 	"github.com/nacos-group/nacos-sdk-go/v2/common/file"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/logger"
@@ -138,18 +137,15 @@ func WriteEncryptedDataKeyToFile(cacheKey string, cacheDir string, content strin
 func writeConfigToFile(fileName string, content string, fileType ConfigCachedFileType) error {
 	if len(strings.TrimSpace(content)) == 0 {
 		// delete config snapshot
-		if err := os.Remove(fileName); err != nil {
-			if err != syscall.ENOENT {
-				logger.Debug(fmt.Sprintf("no need to delete %s cache file, file path %s, file doesn't exist.", fileType, fileName))
-				return nil
-			}
-			errMsg := fmt.Sprintf("failed to delete %s cache file, file path %s, err:%v", fileType, fileName, err)
-			return errors.New(errMsg)
+		if err := os.Remove(fileName); err != nil && !errors.Is(err, os.ErrNotExist) {
+			return errors.Wrapf(err, "failed to delete %s cache file, file path: %s", fileType, fileName)
 		}
+		return nil
 	}
+
 	err := os.WriteFile(fileName, []byte(content), 0666)
 	if err != nil {
-		errMsg := fmt.Sprintf("failed to write %s cache file, file name: %s, value: %s, err:%v", fileType, fileName, content, err)
+		errMsg := fmt.Sprintf("failed to write %s cache file, file name: %s, err:%v", fileType, fileName, err)
 		return errors.New(errMsg)
 	}
 	return nil

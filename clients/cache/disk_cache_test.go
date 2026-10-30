@@ -44,7 +44,7 @@ func TestWriteAndGetConfigToFile(t *testing.T) {
 		assert.Nil(t, err)
 
 		configFromFile, err = ReadConfigFromFile(cacheKey, dir)
-		assert.Nil(t, err)
+		assert.ErrorIs(t, err, fileNotExistError)
 		assert.Equal(t, configFromFile, "")
 	})
 

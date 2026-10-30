@@ -24,7 +24,6 @@ import (
 	"github.com/nacos-group/nacos-sdk-go/v2/common/tls"
 
 	"github.com/nacos-group/nacos-sdk-go/v2/common/logger"
-	"github.com/nacos-group/nacos-sdk-go/v2/util"
 	"github.com/pkg/errors"
 )
 
@@ -42,36 +41,19 @@ func (agent *HttpAgent) Get(path string, header http.Header, timeoutMs uint64,
 }
 
 func (agent *HttpAgent) RequestOnlyResult(method string, path string, header http.Header, timeoutMs uint64, params map[string]string) string {
-	var response *http.Response
-	var err error
-	switch method {
-	case http.MethodGet:
-		response, err = agent.Get(path, header, timeoutMs, params)
-		break
-	case http.MethodPost:
-		response, err = agent.Post(path, header, timeoutMs, params)
-		break
-	case http.MethodPut:
-		response, err = agent.Put(path, header, timeoutMs, params)
-		break
-	case http.MethodDelete:
-		response, err = agent.Delete(path, header, timeoutMs, params)
-		break
-	default:
-		logger.Errorf("request method[%s], path[%s],header:[%s],params:[%s], not avaliable method ", method, path, util.ToJsonString(header), util.ToJsonString(params))
-	}
+	response, err := agent.Request(method, path, header, timeoutMs, params)
 	if err != nil {
-		logger.Errorf("request method[%s],request path[%s],header:[%s],params:[%s],err:%+v", method, path, util.ToJsonString(header), util.ToJsonString(params), err)
+		logger.Errorf("request method[%s],request path[%s],err:%+v", method, path, err)
 		return ""
 	}
+	defer response.Body.Close()
 	if response.StatusCode != constant.RESPONSE_CODE_SUCCESS {
-		logger.Errorf("request method[%s],request path[%s],header:[%s],params:[%s],status code error:%d", method, path, util.ToJsonString(header), util.ToJsonString(params), response.StatusCode)
+		logger.Errorf("request method[%s],request path[%s],status code error:%d", method, path, response.StatusCode)
 		return ""
 	}
 	bytes, errRead := io.ReadAll(response.Body)
-	defer response.Body.Close()
 	if errRead != nil {
-		logger.Errorf("request method[%s],request path[%s],header:[%s],params:[%s],read error:%+v", method, path, util.ToJsonString(header), util.ToJsonString(params), errRead)
+		logger.Errorf("request method[%s],request path[%s],read error:%+v", method, path, errRead)
 		return ""
 	}
 	return string(bytes)
@@ -94,7 +76,7 @@ func (agent *HttpAgent) Request(method string, path string, header http.Header, 
 		return
 	default:
 		err = errors.New("not available method")
-		logger.Errorf("request method[%s], path[%s],header:[%s],params:[%s], not available method ", method, path, util.ToJsonString(header), util.ToJsonString(params))
+		logger.Errorf("request method[%s], path[%s], not available method ", method, path)
 	}
 	return
 }

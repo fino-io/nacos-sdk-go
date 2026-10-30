@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/common/logger"
+	"github.com/fino-io/nacos-sdk-go/v2/common/logger"
 )
 
 type ResourceInjector interface {

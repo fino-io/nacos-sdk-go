@@ -24,18 +24,18 @@ import (
 	"sync"
 	"time"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/common/security"
+	"github.com/fino-io/nacos-sdk-go/v2/common/security"
 
 	"github.com/pkg/errors"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/clients/nacos_client"
-	"github.com/nacos-group/nacos-sdk-go/v2/clients/naming_client/naming_cache"
-	"github.com/nacos-group/nacos-sdk-go/v2/clients/naming_client/naming_proxy"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/logger"
-	"github.com/nacos-group/nacos-sdk-go/v2/model"
-	"github.com/nacos-group/nacos-sdk-go/v2/util"
-	"github.com/nacos-group/nacos-sdk-go/v2/vo"
+	"github.com/fino-io/nacos-sdk-go/v2/clients/nacos_client"
+	"github.com/fino-io/nacos-sdk-go/v2/clients/naming_client/naming_cache"
+	"github.com/fino-io/nacos-sdk-go/v2/clients/naming_client/naming_proxy"
+	"github.com/fino-io/nacos-sdk-go/v2/common/constant"
+	"github.com/fino-io/nacos-sdk-go/v2/common/logger"
+	"github.com/fino-io/nacos-sdk-go/v2/model"
+	"github.com/fino-io/nacos-sdk-go/v2/util"
+	"github.com/fino-io/nacos-sdk-go/v2/vo"
 )
 
 // NamingClient ...

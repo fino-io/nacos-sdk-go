@@ -17,8 +17,8 @@
 package rpc_request
 
 import (
-	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/v2/model"
+	"github.com/fino-io/nacos-sdk-go/v2/common/constant"
+	"github.com/fino-io/nacos-sdk-go/v2/model"
 )
 
 type ConfigRequest struct {

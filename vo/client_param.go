@@ -17,8 +17,8 @@
 package vo
 
 import (
-	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/security"
+	"github.com/fino-io/nacos-sdk-go/v2/common/constant"
+	"github.com/fino-io/nacos-sdk-go/v2/common/security"
 )
 
 type NacosClientParam struct {

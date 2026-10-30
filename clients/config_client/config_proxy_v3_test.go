@@ -25,12 +25,12 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/http_agent"
-	"github.com/nacos-group/nacos-sdk-go/v2/vo"
+	"github.com/fino-io/nacos-sdk-go/v2/common/constant"
+	"github.com/fino-io/nacos-sdk-go/v2/common/http_agent"
+	"github.com/fino-io/nacos-sdk-go/v2/vo"
 )
 
-// Reported in https://github.com/nacos-group/nacos-sdk-go/issues/907: the v3
+// Reported in https://github.com/fino-io/nacos-sdk-go/issues/907: the v3
 // admin config list API returns groupName/namespaceId and no group/tenant or
 // content fields, so the raw v1-style ConfigItem decodes empty Group/Tenant.
 const v3ConfigListResponse = `{

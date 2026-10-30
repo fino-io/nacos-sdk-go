@@ -19,10 +19,10 @@ package naming_cache
 import (
 	"sync"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/clients/cache"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/logger"
-	"github.com/nacos-group/nacos-sdk-go/v2/model"
-	"github.com/nacos-group/nacos-sdk-go/v2/util"
+	"github.com/fino-io/nacos-sdk-go/v2/clients/cache"
+	"github.com/fino-io/nacos-sdk-go/v2/common/logger"
+	"github.com/fino-io/nacos-sdk-go/v2/model"
+	"github.com/fino-io/nacos-sdk-go/v2/util"
 )
 
 type SubscribeCallback struct {

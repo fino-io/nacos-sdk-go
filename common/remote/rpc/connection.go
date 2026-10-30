@@ -17,8 +17,8 @@
 package rpc
 
 import (
-	"github.com/nacos-group/nacos-sdk-go/v2/common/remote/rpc/rpc_request"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/remote/rpc/rpc_response"
+	"github.com/fino-io/nacos-sdk-go/v2/common/remote/rpc/rpc_request"
+	"github.com/fino-io/nacos-sdk-go/v2/common/remote/rpc/rpc_response"
 	"google.golang.org/grpc"
 )
 

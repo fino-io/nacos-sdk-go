@@ -22,7 +22,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/common/logger"
+	"github.com/fino-io/nacos-sdk-go/v2/common/logger"
 )
 
 func TransformObject2Param(object interface{}) (params map[string]string) {

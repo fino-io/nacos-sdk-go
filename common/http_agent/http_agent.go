@@ -20,10 +20,10 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/tls"
+	"github.com/fino-io/nacos-sdk-go/v2/common/constant"
+	"github.com/fino-io/nacos-sdk-go/v2/common/tls"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/common/logger"
+	"github.com/fino-io/nacos-sdk-go/v2/common/logger"
 	"github.com/pkg/errors"
 )
 

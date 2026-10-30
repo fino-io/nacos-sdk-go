@@ -3,10 +3,10 @@ package rpc
 import (
 	"testing"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/nacos_server"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/remote/rpc/rpc_request"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/remote/rpc/rpc_response"
+	"github.com/fino-io/nacos-sdk-go/v2/common/constant"
+	"github.com/fino-io/nacos-sdk-go/v2/common/nacos_server"
+	"github.com/fino-io/nacos-sdk-go/v2/common/remote/rpc/rpc_request"
+	"github.com/fino-io/nacos-sdk-go/v2/common/remote/rpc/rpc_response"
 	"github.com/stretchr/testify/assert"
 )
 

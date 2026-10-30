@@ -1,9 +1,9 @@
 package naming_grpc
 
 import (
+	"github.com/fino-io/nacos-sdk-go/v2/clients/naming_client/naming_proxy"
+	"github.com/fino-io/nacos-sdk-go/v2/util"
 	"github.com/golang/mock/gomock"
-	"github.com/nacos-group/nacos-sdk-go/v2/clients/naming_client/naming_proxy"
-	"github.com/nacos-group/nacos-sdk-go/v2/util"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

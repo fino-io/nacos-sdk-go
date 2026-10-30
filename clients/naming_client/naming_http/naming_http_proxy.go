@@ -26,12 +26,12 @@ import (
 
 	"github.com/buger/jsonparser"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/clients/naming_client/naming_cache"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/logger"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/nacos_server"
-	"github.com/nacos-group/nacos-sdk-go/v2/model"
-	"github.com/nacos-group/nacos-sdk-go/v2/util"
+	"github.com/fino-io/nacos-sdk-go/v2/clients/naming_client/naming_cache"
+	"github.com/fino-io/nacos-sdk-go/v2/common/constant"
+	"github.com/fino-io/nacos-sdk-go/v2/common/logger"
+	"github.com/fino-io/nacos-sdk-go/v2/common/nacos_server"
+	"github.com/fino-io/nacos-sdk-go/v2/model"
+	"github.com/fino-io/nacos-sdk-go/v2/util"
 )
 
 // NamingHttpProxy ...

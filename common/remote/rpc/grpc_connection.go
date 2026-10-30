@@ -20,12 +20,12 @@ import (
 	"context"
 	"time"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/common/logger"
+	"github.com/fino-io/nacos-sdk-go/v2/common/logger"
 
-	nacos_grpc_service "github.com/nacos-group/nacos-sdk-go/v2/api/grpc"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/remote/rpc/rpc_request"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/remote/rpc/rpc_response"
-	"github.com/nacos-group/nacos-sdk-go/v2/util"
+	nacos_grpc_service "github.com/fino-io/nacos-sdk-go/v2/api/grpc"
+	"github.com/fino-io/nacos-sdk-go/v2/common/remote/rpc/rpc_request"
+	"github.com/fino-io/nacos-sdk-go/v2/common/remote/rpc/rpc_response"
+	"github.com/fino-io/nacos-sdk-go/v2/util"
 	"github.com/pkg/errors"
 	"google.golang.org/protobuf/types/known/anypb"
 

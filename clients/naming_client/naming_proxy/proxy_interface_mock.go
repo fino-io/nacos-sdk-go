@@ -7,8 +7,8 @@ package naming_proxy
 import (
 	reflect "reflect"
 
+	model "github.com/fino-io/nacos-sdk-go/v2/model"
 	gomock "github.com/golang/mock/gomock"
-	model "github.com/nacos-group/nacos-sdk-go/v2/model"
 )
 
 // MockINamingProxy is a mock of INamingProxy interface.

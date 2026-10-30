@@ -5,7 +5,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/model"
+	"github.com/fino-io/nacos-sdk-go/v2/model"
 	"github.com/stretchr/testify/require"
 )
 

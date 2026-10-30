@@ -19,11 +19,11 @@ package rpc
 import (
 	"strconv"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/clients/naming_client/naming_cache"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/logger"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/remote/rpc/rpc_request"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/remote/rpc/rpc_response"
+	"github.com/fino-io/nacos-sdk-go/v2/clients/naming_client/naming_cache"
+	"github.com/fino-io/nacos-sdk-go/v2/common/constant"
+	"github.com/fino-io/nacos-sdk-go/v2/common/logger"
+	"github.com/fino-io/nacos-sdk-go/v2/common/remote/rpc/rpc_request"
+	"github.com/fino-io/nacos-sdk-go/v2/common/remote/rpc/rpc_response"
 )
 
 // IServerRequestHandler to process the request from server side.

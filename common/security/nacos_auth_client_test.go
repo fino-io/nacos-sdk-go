@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
+	"github.com/fino-io/nacos-sdk-go/v2/common/constant"
 	"github.com/stretchr/testify/assert"
 )
 

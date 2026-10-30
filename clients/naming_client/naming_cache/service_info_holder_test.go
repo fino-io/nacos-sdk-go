@@ -23,9 +23,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/common/logger"
-	"github.com/nacos-group/nacos-sdk-go/v2/model"
-	"github.com/nacos-group/nacos-sdk-go/v2/util"
+	"github.com/fino-io/nacos-sdk-go/v2/common/logger"
+	"github.com/fino-io/nacos-sdk-go/v2/model"
+	"github.com/fino-io/nacos-sdk-go/v2/util"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -288,7 +288,7 @@ func newTestService(serviceName, ip string, lastRefTime uint64) *model.Service {
 }
 
 // TestIsServiceInstanceChanged_NoDataRace 验证 isServiceInstanceChanged 不会在排序时修改原始 Hosts 切片
-// 回归测试 https://github.com/nacos-group/nacos-sdk-go/issues/818
+// 回归测试 https://github.com/fino-io/nacos-sdk-go/issues/818
 func TestIsServiceInstanceChanged_NoDataRace(t *testing.T) {
 	rand.Seed(time.Now().Unix())
 	// 构造一个包含多个实例的 service，Hosts 顺序是乱序的

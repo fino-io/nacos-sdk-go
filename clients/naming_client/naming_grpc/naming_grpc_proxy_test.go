@@ -3,10 +3,10 @@ package naming_grpc
 import (
 	"testing"
 
-	"github.com/nacos-group/nacos-sdk-go/v2/common/remote/rpc/rpc_request"
-	"github.com/nacos-group/nacos-sdk-go/v2/common/remote/rpc/rpc_response"
-	"github.com/nacos-group/nacos-sdk-go/v2/model"
-	"github.com/nacos-group/nacos-sdk-go/v2/util"
+	"github.com/fino-io/nacos-sdk-go/v2/common/remote/rpc/rpc_request"
+	"github.com/fino-io/nacos-sdk-go/v2/common/remote/rpc/rpc_response"
+	"github.com/fino-io/nacos-sdk-go/v2/model"
+	"github.com/fino-io/nacos-sdk-go/v2/util"
 	"github.com/stretchr/testify/assert"
 )
 

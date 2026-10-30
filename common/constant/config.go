@@ -38,7 +38,7 @@ type ClientConfig struct {
 	AccessKey            string // the AccessKey for kms
 	SecretKey            string // the SecretKey for kms
 	RamConfig            *RamConfig
-	OpenKMS              bool         // it's to open kms, default is false. https://help.aliyun.com/product/28933.html
+	OpenKMS              bool         // Deprecated: KMS is unsupported; setting true returns an error.
 	KMSVersion           KMSVersion   // kms client version. https://help.aliyun.com/document_detail/380927.html
 	KMSv3Config          *KMSv3Config //KMSv3 configuration. https://help.aliyun.com/document_detail/601596.html
 	KMSConfig            *KMSConfig

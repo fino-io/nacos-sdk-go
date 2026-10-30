@@ -28,7 +28,6 @@ import (
 	"github.com/nacos-group/nacos-sdk-go/v2/clients/cache"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients/nacos_client"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
-	nacos_inner_encryption "github.com/nacos-group/nacos-sdk-go/v2/common/encryption"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/filter"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/logger"
 	"github.com/nacos-group/nacos-sdk-go/v2/common/monitor"
@@ -105,12 +104,15 @@ func (cacheData *cacheData) executeListener() {
 
 func NewConfigClientWithRamCredentialProvider(nc nacos_client.INacosClient, provider security.RamCredentialProvider) (*ConfigClient, error) {
 	config := &ConfigClient{}
-	config.ctx, config.cancel = context.WithCancel(context.Background())
 	config.INacosClient = nc
 	clientConfig, err := nc.GetClientConfig()
 	if err != nil {
 		return nil, err
 	}
+	if clientConfig.OpenKMS {
+		return nil, errors.New("KMS encryption is not supported by this SDK fork")
+	}
+	config.ctx, config.cancel = context.WithCancel(context.Background())
 	serverConfig, err := nc.GetServerConfig()
 	if err != nil {
 		return nil, err
@@ -131,16 +133,6 @@ func NewConfigClientWithRamCredentialProvider(nc nacos_client.INacosClient, prov
 	}
 
 	config.configFilterChainManager = filter.NewConfigFilterChainManager()
-
-	if clientConfig.OpenKMS {
-		kmsEncryptionHandler := nacos_inner_encryption.NewKmsHandler()
-		nacos_inner_encryption.RegisterConfigEncryptionKmsPlugins(kmsEncryptionHandler, clientConfig)
-		encryptionFilter := filter.NewDefaultConfigEncryptionFilter(kmsEncryptionHandler)
-		err := filter.RegisterConfigFilterToChain(config.configFilterChainManager, encryptionFilter)
-		if err != nil {
-			logger.Error(err)
-		}
-	}
 
 	uid, err := uuid.NewV4()
 	if err != nil {
@@ -211,7 +203,7 @@ func (client *ConfigClient) getConfigInner(param vo.ConfigParam) (content, encry
 				cacheErr, param.DataId, param.Group, clientConfig.NamespaceId)
 		}
 
-		if !strings.HasPrefix(param.DataId, nacos_inner_encryption.CipherPrefix) {
+		if !strings.HasPrefix(param.DataId, "cipher-") {
 			return cacheContent, "", nil
 		}
 		encryptedDataKey, cacheErr = cache.ReadEncryptedDataKeyFromFile(cacheKey, client.configCacheDir)

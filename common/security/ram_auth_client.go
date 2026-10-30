@@ -21,21 +21,6 @@ type RamAuthClient struct {
 
 func NewRamAuthClient(clientCfg constant.ClientConfig) *RamAuthClient {
 	var providers = []RamCredentialProvider{
-		&RamRoleArnCredentialProvider{
-			clientConfig: clientCfg,
-		},
-		&EcsRamRoleCredentialProvider{
-			clientConfig: clientCfg,
-		},
-		&OIDCRoleArnCredentialProvider{
-			clientConfig: clientCfg,
-		},
-		&CredentialsURICredentialProvider{
-			clientConfig: clientCfg,
-		},
-		&AutoRotateCredentialProvider{
-			clientConfig: clientCfg,
-		},
 		&StsTokenCredentialProvider{
 			clientConfig: clientCfg,
 		},

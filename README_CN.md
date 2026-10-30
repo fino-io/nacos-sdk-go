@@ -1,3 +1,10 @@
+> 此 fork 面向自建 Nacos / r-nacos。已移除 KMS 加解密和自动云凭据获取
+> （Secrets Manager、ECS RAM Role、角色扮演、OIDC、Credentials URI）。
+> 保留用户名密码、显式 AK/SK、STS token 和自定义 RamCredentialProvider。
+> 旧 KMS 配置字段仅为源码兼容保留，OpenKMS=true 会返回错误；自动云凭据字段不再生效。
+> 下文涉及云集成的内容为上游历史说明。module 路径保持不变，可通过 replace 接入此 fork。
+
+
 # Nacos-sdk-go [English](./README.md) #
 
 [![Build Status](https://travis-ci.org/nacos-group/nacos-sdk-go.svg?branch=master)](https://travis-ci.org/nacos-group/nacos-sdk-go) [![Go Report Card](https://goreportcard.com/badge/github.com/nacos-group/nacos-sdk-go)](https://goreportcard.com/report/github.com/nacos-group/nacos-sdk-go) ![license](https://img.shields.io/badge/license-Apache--2.0-green.svg)
@@ -152,7 +159,7 @@ cc := constant.ClientConfig{
   RegionId:    "cn-shanghai",
   AccessKey:   "LTAI4G8KxxxxxxxxxxxxxbwZLBr",
   SecretKey:   "n5jTL9YxxxxxxxxxxxxaxmPLZV9",
-  OpenKMS:     true,
+  OpenKMS:     false,
   TimeoutMs:   5000,
   LogLevel:    "debug",
 }

@@ -43,7 +43,6 @@ var clientConfigWithOptions = constant.NewClientConfig(
 	constant.WithNotLoadCacheAtStart(true),
 	constant.WithAccessKey("LTAxxx"),
 	constant.WithSecretKey("EdPxxx"),
-	constant.WithOpenKMS(true),
 	constant.WithKMSVersion(constant.KMSv1),
 	constant.WithRegionId("cn-hangzhou"),
 )
@@ -408,4 +407,12 @@ func Test_ConfigClientWithProvider(t *testing.T) {
 
 	assert.Nil(t, err)
 	assert.Equal(t, "hello world", content)
+}
+
+func TestNewConfigClientRejectsKMS(t *testing.T) {
+	nc := &nacos_client.NacosClient{}
+	assert.NoError(t, nc.SetClientConfig(constant.ClientConfig{OpenKMS: true}))
+	client, err := NewConfigClient(nc)
+	assert.Nil(t, client)
+	assert.EqualError(t, err, "KMS encryption is not supported by this SDK fork")
 }
